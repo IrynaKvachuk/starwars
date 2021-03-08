@@ -5,6 +5,7 @@ import Loader from "../components/Loader/Loader.js";
 const CreaturesPage = lazy(() => import("./Creatures/CreaturesPage.js"));
 const CreaturesById = lazy(() => import("./Creatures/CreaturesById.js"));
 const PlanetsPage = lazy(() => import("./Planets/PlanetsPage.js"));
+const PlanetsById = lazy(() => import("./Planets/PlanetsById.js"));
 
 const Pages = () => {
   return (
@@ -14,6 +15,7 @@ const Pages = () => {
           <Route exact path="/creatures" component={CreaturesPage} />
           <Route path="/creatures/:id" component={CreaturesById} />
           <Route exact path="/planets" component={PlanetsPage} />
+          <Route path="/planets/:id" component={PlanetsById} />
           <Redirect from="*" to="/creatures" />
         </Switch>
       </Suspense>

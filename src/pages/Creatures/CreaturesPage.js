@@ -1,69 +1,26 @@
 import { useState } from "react";
 import DataGrid, { Column, Pager, Paging } from "devextreme-react/data-grid";
-import CustomStore from "devextreme/data/custom_store";
-import DataSource from "devextreme/data/data_source";
 import { useHistory } from "react-router-dom";
-
-const createSwDataStore = (url, setIndex, pageSize) => {
-  let totalCount = 0;
-  let currentPage = 0;
-
-  const st = new CustomStore({
-    totalCount: (e) => Promise.resolve(totalCount),
-    load: (loadData) => {
-      return fetch(
-        url +
-          (currentPage === 0
-            ? ""
-            : "?" + new URLSearchParams({ page: currentPage + 1 }))
-      )
-        .then((data) => data.json())
-        .then((data) => {
-          totalCount = data.count;
-          let results = new Array(currentPage * pageSize).concat(
-            data.results.map((entry) => {
-              const id = entry.url.match(/\d+/);
-              return { ...entry, id: id[0] };
-            })
-          );
-          return results;
-        });
-    },
-  });
-
-  const dataSourceOptions = new DataSource({
-    store: st,
-    paginate: true,
-    pageSize: pageSize,
-  });
-  dataSourceOptions.pageIndex = (newIndex) => {
-    if (newIndex !== undefined) {
-      currentPage = newIndex;
-      setIndex(currentPage);
-    }
-    return currentPage;
-  };
-  dataSourceOptions.totalCount = (data) => {
-    return totalCount;
-  };
-  return dataSourceOptions;
-};
+import createSwDataStore from "../../utils/customStore";
 
 const CreaturesPage = () => {
   const history = useHistory();
   const pageSize = 10;
   const [index, setIndex] = useState(0);
-  const dataSOurce = createSwDataStore(
+  const dataSource = createSwDataStore(
     "https://swapi.dev/api/people/",
     setIndex,
+    () => index,
+    (entry) => entry.url.match(/\d+/),
     pageSize
   );
+
   return (
     <DataGrid
       onRowDblClick={(e) => {
         history.push(`/creatures/${e.key.id}`);
       }}
-      dataSource={dataSOurce}
+      dataSource={dataSource}
       selection={{ mode: "single" }}
     >
       <Column dataField="name" dataType="string" caption="name" />

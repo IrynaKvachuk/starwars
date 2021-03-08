@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: $color-primary;
+
+  &__link {
+    margin: 0 1rem;
+    font-size: 2rem;
+    color: $color-font-white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: $color-font-gray;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

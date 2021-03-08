@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "devextreme/dist/css/dx.common.css";
+import "devextreme/dist/css/dx.light.css";
+import Header from "./layout/Header/Header";
+import Layout from "./layout/Layout/Layout";
+import Pages from "./pages";
+import "./styles/main.scss";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Header />
+      <Pages />
+    </Layout>
   );
-}
+};
 
 export default App;

@@ -12,7 +12,6 @@ const CreaturesById = () => {
   let genderOptions = {
     items: gender,
   };
-  let notesOptions = { height: 36 };
 
   useEffect(() => {
     fetch(`https://swapi.dev/api/people/${matchParams.id}`)
@@ -38,8 +37,6 @@ const CreaturesById = () => {
         <SimpleItem
           colSpan={2}
           dataField="homeworld"
-          editorType="dxTextArea"
-          editorOptions={notesOptions}
         />
         <GroupItem>
           <SimpleItem dataField="skin_color" />

@@ -14,6 +14,7 @@ const PlanetsPage = () => {
     (entry) => entry.url.match(/\d+/),
     pageSize
   );
+  
   return (
     <DataGrid
       onRowDblClick={(e) => {
@@ -33,7 +34,7 @@ const PlanetsPage = () => {
       <Column dataField="surface_water" dataType="number" />
       <Column dataField="population" dataType="number" width="120px" />
 
-      <Pager allowedPageSizes={[pageSize]} showPageSizeSelector={true} />
+      <Pager allowedPageSizes={[pageSize]} />
       <Paging pageIndex={index} defaultPageSize={pageSize} />
     </DataGrid>
   );

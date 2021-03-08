@@ -34,7 +34,7 @@ const CreaturesPage = () => {
       <Column dataField="gender" dataType="string" />
       <Column dataField="homeworld" dataType="string" />
 
-      <Pager allowedPageSizes={[pageSize]} showPageSizeSelector={true} />
+      <Pager allowedPageSizes={[pageSize]} />
       <Paging pageIndex={index} defaultPageSize={pageSize} />
     </DataGrid>
   );
